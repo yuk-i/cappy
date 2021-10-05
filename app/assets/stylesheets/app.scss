@@ -1,0 +1,87 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+
+@import 'bootstrap';
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style-type: none
+}
+
+a {
+    color: rgba(137,137,137,1);
+    text-decoration:none; 
+}
+
+html {
+    height: 100%;
+}
+
+body {
+  font-family: 'Yu Mincho', serif; //font-weight400以下と500は使わない
+  font-size: .9rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #212529;
+  text-align: left;
+  background-color: #DDDDDD;
+  height: 100%;
+}
+
+main {
+    height: 100%;
+}
+
+.alert {
+    margin-bottom: 0rem;
+}
+
+.alert-secondary {
+    border-radius: 0;
+}
+
+
+// Bootstrapに関するCSS------------------------
+.header-container {
+    font-size: 1rem;
+    box-shadow: 0px 1px 3px rgba(160, 166, 179, 0.3);
+}
+
+
+.btn-secondary { 
+    background-color: rgba(137,137,137,0.9);
+    border-color: rgba(137,137,137,0.9);
+    border-radius: 20px;
+    letter-spacing: 0.5rem;
+    text-indent: 0.5rem;
+    padding: 0.3rem 1rem;
+    margin-top: 10%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
+}
+
+.submit-button {
+    background-color: #80CAC5;
+    color: #FFFFFF;
+}
+
+.new-submit-button {
+    background-color: #80CAC5;
+    color: #FFFFFF;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.btn-link {
+    text-decoration:none;
+    color: #898989;
+    font-size: 1rem;
+}
+
+
+.form-control {
+    width: 65%;
+}
+
+.invalid-feedback {
+    padding-left: 35%;
+}

@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="sub-cat-container shadow bg-white rounded">
+    <p class="text-center pt-3 mb-0">猫の情報を入力してください。</p>
+        
+    <%= form_with model: @cat do |f| %>
+      <div class="form p-5">
+        <div class="form-group row">
+          <%= f.file_field :image, class: "col-sm-8" %>
+        </div>
+        <div class="form-main">
+          <div class="form-group row mt-4">
+            <label for="text" class="col-sm-4 col-form-label">名前</label>
+            <%= f.text_field :name, class: "col-sm-8 form-control #{"is-invalid" if f.object.errors.messages[:name].present? }", placeholder: "猫次郎" %>
+            <div class="invalid-feedback">10文字以内で入力してください。</div>
+          </div>
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">生年月日</label>
+            <%= f.date_field :birthday, class: "col-sm-8 form-control #{"is-invalid" if f.object.errors.messages[:birthday].present? }" %>
+            <div class="invalid-feedback">入力してください。</div>
+          </div>
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">性別</label>
+              <%= f.radio_button :gender, "男の子", class: "col-sm-2" %>男の子 
+              <%= f.radio_button :gender, "女の子", class: "col-sm-2" %>女の子
+          </div>   
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">種類</label>
+            <%= f.collection_select :cat_category_id, @cat_categories, :id, :name, {}, class: "col-sm-8" %>
+          </div>
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">性格<br>（複数選択２つ）</label>
+            <%= fields_for :cat_personalities do |cp| %>
+              <%= cp.collection_select :cat_personality_category_id, @cat_personality_categories, :id, :name, {}, {class: "col-sm-4", multiple: true, size: 5} %>
+            <% end %>
+          </div>
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">現在の体重</label>
+            <%= f.number_field :weight, class: "col-sm-4" %>kg
+          </div>
+        </div>
+        <div class="form-oneday">
+            <p>1日の目安</p>
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">ご飯の量</label>
+            <%= f.number_field :food_amount, class: "col-sm-4" %>g
+          </div>
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">トイレの回数  おしっこ</label>
+            <%= f.number_field :pee_count, min: 0, max: 10, class: "col-sm-2" %>回  /  うんち
+            <%= f.number_field :poop_count, min: 0, max: 10, class: "col-sm-2" %>回
+          </div>
+        </div>
+        <div class="form-other">
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">トイレの砂</label>
+            <%= f.collection_select :cat_sand_category_id, @cat_sands, :id, :name, {}, class: "col-sm-8" %>
+          </div>
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">好きなおやつ</label>
+            <%= f.text_field :favorite_snack, class: "col-sm-8", placeholder: "" %>
+          </div>
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">好きなおもちゃ</label>
+            <%= f.text_field :favorite_toy, class: "col-sm-8", placeholder: "" %>
+          </div>
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">かかりつけの病院</label>
+            <%= f.text_field :hospital, class: "col-sm-8", placeholder: "" %>
+          </div>
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">その他 特徴</label>
+            <%= f.text_area :characteristic, class: "col-sm-8", placeholder: "耳が汚れ多、噛み癖あり・・・など身体的な特徴" %>
+          </div>
+          <div class="form-group row mt-2">
+            <label for="text" class="col-sm-4 col-form-label">メモ</label>
+            <%= f.text_area :memo, class: "col-sm-8", placeholder: "去勢済、猫三郎と仲がいい・・・など" %>
+          </div>
+          <div class="form-group row mt-2">
+              <%= f.hidden_field :family_id, value: current_user.family_id, class: "col-sm-8" %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group text-center">
+      <%= f.submit "次の猫ちゃんを登録する場合はこちら", class: "btn btn-link" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "登録する", class: "btn new-submit-button p-2 w-100" %>
+      </div>
+          
+    <% end %>
+  </div>
+</div>

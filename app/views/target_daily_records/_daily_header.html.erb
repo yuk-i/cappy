@@ -1,0 +1,13 @@
+<div class="month-ber p-3 row">
+    <%= link_to image_tag("/images/左white.svg", class:"arrow"), 
+    cat_record_path(@cat,@display_day.prev_month), class:"col-1" %>
+    <h4 class="col-10 text-center mb-0"><%= @display_day.month %> 月</h4> 
+    <%= link_to image_tag("/images/右white.svg", class:"arrow"), 
+    cat_record_path(@cat,@display_day.next_month), class:"col-1 text-end" %>
+</div>
+
+<div class="record-icons p-3 text-center">
+    <% @type_image.each_with_index do |type, i| %>
+        <%= image_tag("/record_images/#{type}", onclick:"iconEntry(#{i+1});", class:"m-1") %>
+    <% end %>
+</div>

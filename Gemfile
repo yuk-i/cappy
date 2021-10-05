@@ -34,6 +34,36 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# deviseを使用できる
+gem 'devise'
+
+# bootstrapを使用できる
+gem 'bootstrap'
+gem 'jquery-rails'
+
+# 環境変数を使用できる
+gem 'dotenv-rails'
+
+# エラーメッセージの日本語化
+gem 'rails-i18n'
+
+# アクティブストレージのバケットS3用gem
+gem "aws-sdk-s3", require: false
+
+# 以下２つは不要？一応入れておく
+# imageMagicインストール後、それをrubyで使用するためのgemらしい
+gem 'mini_magick'
+# 画像のサイズ変換に使えるgem
+gem 'image_processing', '~> 1.2'
+
+# コンソール上の表示を分かりやすくするgem
+gem 'hirb'
+gem 'hirb-unicode'
+
+# グラフ関係のgem
+gem 'chartkick'
+gem 'groupdate'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

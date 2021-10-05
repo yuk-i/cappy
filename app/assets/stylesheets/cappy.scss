@@ -1,0 +1,258 @@
+// TOPに関するCSS---------------------------
+.top-container {
+    text-align: center;
+}
+
+.sub-title {
+    letter-spacing: 0.5rem;
+    padding-top: 5%;
+    font-size: 1.2rem;
+}
+
+.login_sub-title {
+    letter-spacing: 0.5rem;
+    font-size: 1rem;
+}
+
+.title img {
+    width: 10%;
+    margin: 0 1%;
+} 
+
+.image-cat {
+    margin-bottom: 0;
+}
+
+.alto {
+    width: 45%; //PC画面MAXで丁度いいサイズ。のちのちクエリで設定予定
+}
+
+.login-about {
+    padding-top: 10%;
+}
+
+
+
+// CatのHOMEページに関するCSS----------------
+
+.cat-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 80px auto;
+}
+
+.cat-home {
+    background-color: white;
+}
+
+.sub-menus p {
+    width: 100%;
+    height: 90px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
+}
+
+.news {
+    margin-right: 5%;
+    margin-left: 5%;
+    width: 100%;
+}
+
+.menus img {
+    width: 80%;
+    margin-top: 10%;
+}
+
+.menus ul {
+    text-align: center
+}
+
+.container-field {
+    padding-left: 2rem;
+    padding-bottom: 2rem;
+}
+
+
+// myCatページに関するCSS--------------------
+
+.mycat-container {
+    background-image: url("../images/仮2.jpeg");
+    background-repeat:  no-repeat;   
+    background-size: cover;
+    padding-bottom: 20%;
+    
+    
+    p {
+        margin-bottom: 5px;
+    }
+    
+    ul {
+       padding-left: 5px; 
+    }
+   
+}
+
+.mycat-about {
+    margin-left: 10px;
+    width: 400px;
+    background-color: rgba(225, 225, 225, 0.9);
+}
+
+.cat-icon {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    border-radius: 80px;
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 80px;
+    }
+}
+
+.edit-btn {
+    float: right;
+    margin-top: 2rem;
+}
+
+// daily_recordページに関するCSS--------------------
+
+.month-ber {
+    background-color: rgba(114, 113, 113, 0.9);
+    
+    h4 {
+        color: white;
+    }
+}
+
+.arrow {
+        width: 20px;
+        
+}
+
+.record-box {
+    width: 500px;
+    background-color: white;
+    // border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
+    margin: 0 auto;
+}
+
+.record-memo {
+    border: none;
+    border-bottom: solid 1px grey;
+
+}
+
+.record-memo:focus {
+    outline: none;
+}
+
+.record-icons {
+    
+    img { 
+        width: 45px;
+    }
+}
+
+.main-icon {
+    width: 70px;
+}
+
+.record {
+    font-size: 25px;
+    
+    .record-memo {
+        color: black;
+        font-size: 1rem;
+        height: 28px;
+        
+    }
+    
+    span {
+        
+        padding : 0;
+    }
+    
+    p {
+        color: grey;
+        font-size: 1rem;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+// chartページ関連
+
+.chart-container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+ 
+
+// --------------------
+
+
+.container {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.login-container {
+    background-color: #FFFFFF;
+    width: 290px;
+    margin: 0 auto;
+    
+}
+
+// formの背景
+.sub-container {
+    background-color: #FFFFFF;
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+// formの背景（猫登録ページ）
+.sub-cat-container {
+    background-color: #FFFFFF;
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.link {
+    margin-top: 10%;
+    font-size: 0.8rem;
+}
+
+.box {
+    border-bottom: thin solid #898989;
+}
+
+// headerに関するCSS--------------------
+
+.icon {
+    margin-right: 10px;
+    margin-left: 5px;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
+}
+
+.cats-icon {
+    margin-right: 10px;
+    margin-left: 5px;
+    width: 45px;
+    height: 45px;
+    border-radius: 80px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
+}
+
+.cats-icon-list {
+    width: 30px;
+    height: 30px;
+    border-radius: 80px;
+}
+

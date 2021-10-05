@@ -1,0 +1,263 @@
+<div class="cat-container">
+    <div class="cat-side p-0">
+        <%= render 'layouts/cat_menus' %>
+    </div>
+    <div class="container-fluid">
+        <%= render 'target_daily_records/daily_header' %>
+        <div class="record-box p-3 mt-5">
+            <div class="record-day mb-3 row">
+                <%= link_to cat_record_path(@cat,@display_day.yesterday), class:"col-1" do %>
+                    <%= image_tag("/images/左black.svg", class:"arrow") %>
+                <% end %>                
+                <h5 class="col-10 text-center"><%= @display_day.strftime("%-m 月 %d 日 ( #{@week} )") %> </h5> 
+                <%= link_to cat_record_path(@cat,@display_day.tomorrow), class:"col-1 text-end" do %>
+                    <%= image_tag("/images/右black.svg", class:"arrow") %>
+                <% end %>
+            </div>
+            <div class="record-form p-3">
+                <div> 
+                    <%= form_with model: [@cat, @target_daily_record], url: {controller: 'target_daily_records', action: 'create' }, local: true do |f| %>
+                        <%= f.hidden_field :cat_id, value: @cat.id %>
+                        <%= f.hidden_field :user_id, value: current_user.id %>
+                        <%= f.hidden_field :target_date, value: @display_day %>
+                        
+                        <div class="form-group">
+                            
+                            <div id="type-one" class="row p-2">
+                                <%= f.fields_for :daily_records do |dr| %>
+                                    <%= dr.hidden_field :daily_record_type_id, value: 1 %>
+                                    <div class="main-icon col-3">
+                                        <%= image_tag("/record_images/#{@type_image[0]}", onclick:"iconNotEntry1()") %>
+                                    </div>
+                                    <div class="col-9 pt-2" >
+                                        <%= dr.number_field :amount, class: "col-2", id:"oneAmount" %> g
+                                        <%= dr.number_field :count, class: "col-2", id:"oneCount" %> 回
+                                        <%= dr.text_field :memo, placeholder: "メモ", class: "record-memo", id:"oneMemo" %>
+                                    </div>
+                                <% end %>
+                            </div>
+                            <div id="type-two" class="row p-2">
+                                <%= f.fields_for :daily_records do |dr| %>
+                                    <%= dr.hidden_field :daily_record_type_id, value: 2 %>
+                                    <div class="main-icon col-3">
+                                        <%= image_tag("/record_images/#{@type_image[1]}", onclick:"iconNotEntry2()") %>
+                                    </div>
+                                    <div class="col-9 pt-2" >
+                                        <%= dr.number_field :amount, class: "col-2", id:"twoAmount" %> ml
+                                        <%= dr.text_field :memo, placeholder: "メモ", class: "record-memo", id:"twoMemo" %>
+                                    </div>
+                                <% end %>
+                            </div>
+                            <div id="type-tree" class="row p-2">
+                                <%= f.fields_for :daily_records do |dr| %>
+                                
+                                    <%= dr.hidden_field :daily_record_type_id, value: 3 %>
+                                    <div class="main-icon col-3">
+                                        <%= image_tag("/record_images/#{@type_image[2]}", onclick:"iconNotEntry3()", class:"") %>
+                                    </div>
+                                    <div class="col-9 pt-2" >
+                                        <%= dr.number_field :count, class: "col-2", id:"treeCount" %> 回
+                                        <%= dr.text_field :memo, placeholder: "メモ", class: "record-memo", id:"treeMemo" %>
+                                    </div>
+                                <% end %>    
+                            </div>
+                            <div id="type-four" class="row p-2">
+                                <%= f.fields_for :daily_records do |dr| %>
+                                
+                                    <%= dr.hidden_field :daily_record_type_id, value: 4 %>
+                                    <div class="main-icon col-3">
+                                        <%= image_tag("/record_images/#{@type_image[3]}", onclick:"iconNotEntry4()", class:"") %>
+                                    </div>
+                                    <div class="col-10 pt-2" >
+                                        <%= dr.number_field :count, class: "col-2", id:"fourCount" %> 回
+                                        <%= dr.select :status, {"選択してください": "" , "コロコロ": "コロコロ", "柔らかい": "柔らかい", "水っぽい": "水っぽい"}, {}, class: "col-4", id:"fourStatus" %>
+                                        <%= dr.text_field :memo, placeholder: "メモ", class: "record-memo col-4", id:"fourMemo" %>
+                                    </div>
+                                <% end %>    
+                            </div>
+                            <div id="type-five" class="row p-2">
+                                <%= f.fields_for :daily_records do |dr| %>
+                                
+                                    <%= dr.hidden_field :daily_record_type_id, value: 5 %>
+                                    <div class="main-icon col-3">
+                                        <%= image_tag("/record_images/#{@type_image[4]}", onclick:"iconNotEntry5()", class:"") %>
+                                    </div>
+                                    <div class="col-10 pt-2" >
+                                        <%= dr.number_field :weight, class: "col-2", id:"fiveWeight" %> kg
+                                        <%= dr.text_field :memo, placeholder: "メモ", class: "record-memo", id:"fiveMemo" %>
+                                    </div>
+                                <% end %>    
+                            </div>
+                            <div id="type-six" class="row p-2">
+                                <%= f.fields_for :daily_records do |dr| %>
+                                
+                                    <%= dr.hidden_field :daily_record_type_id, value: 6 %>
+                                    <div class="main-icon col-3">
+                                        <%= image_tag("/record_images/#{@type_image[5]}", onclick:"iconNotEntry6()", class:"") %>
+                                    </div>
+                                    <div class="col-10 pt-2" >
+                                        <%= dr.number_field :count, class: "col-2", id:"sixCount" %> 回
+                                        <%= dr.text_field :memo, placeholder: "メモ", class: "record-memo", id:"sixMemo" %>
+                                    </div>
+                                <% end %>    
+                            </div>
+                            <div id="type-seven" class="row p-2">
+                                <%= f.fields_for :daily_records do |dr| %>
+                                
+                                    <%= dr.hidden_field :daily_record_type_id, value: 7 %>
+                                    <div class="main-icon col-3">
+                                        <%= image_tag("/record_images/#{@type_image[6]}", onclick:"iconNotEntry7()", class:"") %>
+                                    </div>
+                                    <div class="col-10 pt-2" >
+                                        <%= dr.number_field :count, class: "col-2", id:"sevenCount" %> 回
+                                        <%= dr.text_field :memo, placeholder: "メモ", class: "record-memo", id:"sevenMemo" %>
+                                    </div>
+                                <% end %>    
+                            </div>
+                            <div id="type-eight" class="row p-2">
+                                <%= f.fields_for :daily_records do |dr| %>
+                                
+                                    <%= dr.hidden_field :daily_record_type_id, value: 8 %>
+                                    <div class="main-icon col-3">
+                                        <%= image_tag("/record_images/#{@type_image[7]}", onclick:"iconNotEntry8()", class:"") %>
+                                    </div>
+                                    <div class="col-10 pt-2" >
+                                        <%= dr.text_field :memo, placeholder: "メモ", class: "record-memo", id:"eightMemo" %>
+                                    </div>
+                                <% end %>    
+                            </div>
+                            <div id="type-nine" class="row p-2">
+                                <%= f.fields_for :daily_records do |dr| %>
+                                
+                                    <%= dr.hidden_field :daily_record_type_id, value: 9 %>
+                                    <div class="main-icon col-3">
+                                        <%= image_tag("/record_images/#{@type_image[8]}", onclick:"iconNotEntry9()", class:"") %>
+                                    </div>
+                                    <div class="col-10 pt-2" >
+                                        <%= dr.text_field :memo, placeholder: "メモ", class: "record-memo", id:"nineMemo" %>
+                                    </div>
+                                <% end %>    
+                            </div>
+                            <div id="type-ten" class="row p-2">
+                                <%= f.fields_for :daily_records do |dr| %>
+                                
+                                    <%= dr.hidden_field :daily_record_type_id, value: 10 %>
+                                    <div class="main-icon col-3">
+                                        <%= image_tag("/record_images/#{@type_image[9]}", onclick:"iconNotEntry10()", class:"") %>
+                                    </div>
+                                    <div class="col-10 pt-2" >
+                                        <%= dr.text_field :memo, placeholder: "メモ", class: "record-memo", id:"tenMemo" %>
+                                    </div>
+                                <% end %>    
+                            </div>
+                            
+                            <!--アイコンタイプ0～9まで実装済。残り3つも問題なければ同じ記述方法で実装予定-->
+                            
+                            
+                            
+                            <p id='type-none'>未登録</p>
+                        </div>
+                        
+                        <%= f.submit "登録する" %>
+                    <% end %>
+                </div>
+            
+                
+                <script>
+                
+                
+                
+                // 画像クリックと連動してフォームを表示する
+                function iconEntry(num){
+                    document.getElementById('type-none').style.display = "none";
+                    if(num === 1){
+                        document.getElementById('type-one').style.display = "";
+                    }else if(num === 2){
+                        document.getElementById('type-two').style.display = "";
+                    }else if(num === 3){    
+                        document.getElementById('type-tree').style.display = "";
+                    }else if(num === 4){    
+                        document.getElementById('type-four').style.display = "";
+                    }else if(num === 5){    
+                        document.getElementById('type-five').style.display = "";
+                    }else if(num === 6){    
+                        document.getElementById('type-six').style.display = "";
+                    }else if(num === 7){    
+                        document.getElementById('type-seven').style.display = "";
+                    }else if(num === 8){    
+                        document.getElementById('type-eight').style.display = "";
+                    }else if(num === 9){    
+                        document.getElementById('type-nine').style.display = "";
+                    }else if(num === 10){    
+                        document.getElementById('type-ten').style.display = "";
+                    }else{
+                        
+                    }
+                }
+                
+                //  画像クリックと連動して表示中のフォームを削除→フォームの内容もクリア 
+                function iconNotEntry1(){
+                    document.getElementById('type-one').style.display = "none";
+                    document.getElementById('oneAmount').value = "nil";
+                    document.getElementById('oneCount').value = "nil";
+                    document.getElementById('oneMemo').value = "";
+                }   
+                
+                function iconNotEntry2(){
+                    document.getElementById('type-two').style.display = "none";
+                    document.getElementById('twoAmount').value = "nil";
+                    document.getElementById('twoMemo').value = "";
+                } 
+                
+                function iconNotEntry3(){
+                    document.getElementById('type-tree').style.display = "none";
+                    document.getElementById('treeCount').value = "nil";
+                    document.getElementById('twoMemo').value = "";
+                }   
+                
+                function iconNotEntry4(){
+                    document.getElementById('type-four').style.display = "none";
+                    document.getElementById('fourCount').value = "nil";
+                    document.getElementById('fourStatus').value = "nil";
+                    document.getElementById('twoMemo').value = "";
+                } 
+                
+                function iconNotEntry5(){
+                    document.getElementById('type-five').style.display = "none";
+                    document.getElementById('fiveWeight').value = "nil";
+                    document.getElementById('fiveMemo').value = "";
+                }  
+                
+                function iconNotEntry6(){
+                    document.getElementById('type-six').style.display = "none";
+                    document.getElementById('sixCount').value = "nil";
+                    document.getElementById('sixMemo').value = "";
+                }  
+                
+                function iconNotEntry7(){
+                    document.getElementById('type-seven').style.display = "none";
+                    document.getElementById('sevenCount').value = "nil";
+                    document.getElementById('sevenMemo').value = "";
+                }  
+                
+                function iconNotEntry8(){
+                    document.getElementById('type-eight').style.display = "none";
+                    document.getElementById('eightMemo').value = "";
+                }  
+                
+                function iconNotEntry9(){
+                    document.getElementById('type-nine').style.display = "none";
+                    document.getElementById('nineMemo').value = "";
+                }  
+                
+                function iconNotEntry10(){
+                    document.getElementById('type-ten').style.display = "none";
+                    document.getElementById('tenMemo').value = "";
+                }  
+                
+
+                </script>
+            </div>
+        </div>
+    </div>    
+</div>

@@ -1,0 +1,57 @@
+<div class="cat-container">
+    <div class="cat-side p-0">
+        <%= render 'layouts/cat_menus' %>
+    </div>
+    <div class="container-fluid pb-3">
+        <%= render 'target_daily_records/daily_header' %>
+        <div class="record-box p-3 mt-5 mb-5">
+            <div class="record-day mb-3 row">
+                <%= link_to cat_record_path(@cat,@display_day.yesterday), class:"col-1" do %>
+                    <%= image_tag("/images/左black.svg", class:"arrow") %>
+                <% end %>                
+                <h5 class="col-10 text-center"><%= @display_day.strftime("%-m 月 %d 日 ( #{@week} )") %> </h5> 
+                <%= link_to cat_record_path(@cat,@display_day.tomorrow), class:"col-1 text-end" do %>
+                    <%= image_tag("/images/右black.svg", class:"arrow") %>
+                <% end %>
+            </div>
+            <div class="record-form p-3">
+                
+                    <% @days.each do |day| %>
+                    <div class="row p-2">
+                        <div class="main-icon col-3">
+                            <%= image_tag("/record_images/#{day.daily_record_type.image}") %>
+                        </div>
+                        <div class="record col-9 pt-1" >
+                            <div class="">
+                                <% if day.daily_record_type.image == "ご飯.svg" %> 
+                                    <span class="col-2"><%= "#{day.amount} g" unless day.amount.nil? %></span>
+                                <% else %>
+                                    <span class="col-2"><%= "#{day.amount} ml" unless day.amount.nil? %></span>
+                                <% end %>
+                                <span class=""><%= "#{day.count} 回" unless day.count.nil? %><%= day.status unless day.status.nil? %><%= day.weight unless day.weight.nil? %></span> 
+                                <% if  day.memo.present? %>
+                                    <p class="pt-1 record-memo"><%= day.memo %></p>
+                                <% end %>    
+    
+                                
+                                <% if day.daily_record_type.image == "ご飯.svg" %>
+                                    <% food = day.amount * day.count %>
+                                    <p><%= "#{day.amount}g × #{day.count}回 ＝ 1日 #{food} g" %> </p>
+                                <% elsif day.daily_record_type.image == "フード.svg" %>
+                                    <% buy_food_amount = food / @cat.food_amount %>
+                                    <p><%= "#{day.amount}g × #{day.count}袋 ＝ #{food} g 約#{buy_food_amount}日分を購入" %> </p>
+                                <% else %>
+                                    <!--なにも表示しない-->
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                    <% end %>
+                    <%= link_to "編集", cat_edit_record_path(@cat,@display_day) %>
+                    <%= link_to "削除", "/cats/#{@cat.id}/records/#{@display_day}", method: :delete %>
+                    
+                    
+            </div>
+        </div>
+    </div>    
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="sub-container shadow p-4 bg-white rounded">
+      <h6 class="mt-2 mb-3 text-center">パスワード再設定</h6>
+
+      <p>
+        ご登録時のメールアドレスを入力してください。<br>
+        パスワード再発行用のメールをお送りします。
+      </p>
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <div class="form-group">
+          <%= f.email_field :email, class: "form-control", autofocus: "true", autocomplete: "email", placeholder: "メールアドレス" %>
+        </div>
+
+        <div class="form-group">
+          <%=  f.submit "送信", class: "mt-2 btn submit-button w-100" %>
+        </div>
+      <% end %>
+  </div>
+</div>

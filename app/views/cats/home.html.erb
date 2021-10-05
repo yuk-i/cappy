@@ -1,0 +1,35 @@
+<div class="cat-container bg-light">
+    <!--<div class="row">-->
+        <div class="cat-side p-0">
+            <%= render 'layouts/cat_menus' %>
+        </div>
+        <div class="cat-home p-0">
+            <div class="alert alert-secondary banner">
+                <%= flash[:cat_home] %>
+                <!--文字スクロールを実装予定-->
+               
+            </div>
+                <div class="container-field mt-5">
+                    <div class="row gx-0">
+                        <div class="col-md-7">
+                            <div class="sub-menus d-flex">
+                                <p>天気予報</p>
+                                <p class="news">役立ちコラム</p>
+                                <p>今日の記録</p>
+                            </div>
+                            <!--ユーザーが画像変更できる機能を付ける-->
+                            <img src="/images/仮.jpg" width="100%", class="mt-3">
+                        </div>
+                        <div class="col-md-5 menus p-0">
+                            <ul>
+                                <li><%= link_to image_tag("/images/RECORD.png"), cat_record_path(@cat,Date.today) %></li>
+                                <li><%= link_to image_tag("/images/HOSPITAL.png"), "#" %></li>
+                                <li><%= link_to image_tag("/images/myCAT.png"), cat_path(@cat) %></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>    
+    <!--</div>-->
+</div>

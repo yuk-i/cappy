@@ -1,0 +1,59 @@
+
+    <div class="cat-container">
+        <div class="cat-side p-0">
+            <%= render 'layouts/cat_menus' %>
+        </div>
+        <div class="mycat-container pt-5 px-4">
+        <div class="mycat-about p-3 row">
+            <div class= "col-6">
+                <div class="cat-icon">
+                    <% if @cat.image.attached? %>
+                       <%= image_tag @cat.image %>
+                     <% end %>
+                   
+                </div>
+            </div>
+            <div class="col-6">
+                <ul>
+                    <li>名前</li>
+                        <p><%= @cat.name %></p>
+                    <li>生年月日</li>
+                        <a><%= @cat.birthday %></a>　<a><%= "#{@cat_age}歳" %></a>
+                    <li>性別</li>
+                        <p><%= @cat.gender %></p>
+                </ul>
+            </div>
+            <div class="pt-3">
+                <ul>
+                    <li>種類</li>
+                        <p><%= @cat.cat_category.name %></p>
+                    <li>性格</li>
+                        <% @cat.cat_personalities.each do |p| %>
+                            <a><%= p.cat_personality_category.name %></a>
+                        <% end %>
+                    <li>現在の体重</li>
+                        <p><%= @cat.weight %> kg</p>
+                    <li>ご飯の量</li>
+                        <p><%= @cat.food_amount %> g</p>
+                    <li>トイレの回数</li>
+                        <p class="pl-2">オシッコ<%= @cat.pee_count %> 回
+                        ウンチ<%= @cat.poop_count %> 回</p>
+                    <li>トイレの砂の種類</li>
+                        <p><%= @cat.cat_sand_category.name %></p>
+                    <li>好きなおやつ</li>
+                        <p><%= @cat.favorite_snack %></p>
+                    <li>好きなおもちゃ</li>
+                        <p><%= @cat.favorite_toy %></p>
+                    <li>かかりつけの病院</li>
+                        <p><%= @cat.hospital %></p>
+                    <li>その他 身体的な特徴</li>
+                        <p><%= @cat.characteristic %></p>
+                    <li>メモ</li>
+                        <p><%= @cat.memo %></p>
+                </ul>
+                <img class="" src="/images/鼠.svg" width="90">
+                <%= link_to "編集する", edit_cat_path(@cat), class:"edit-btn" %>
+            </div>
+        </div>
+    </div>    
+</div>

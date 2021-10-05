@@ -1,0 +1,19 @@
+<div class="side-nav">
+    <div class="side-icon pt-3 mb-3">
+    <% if @cat.image.attached? %>
+        <%= image_tag @cat.image, class:"cats-icon" %>
+    <% else %>
+        <%= image_tag "/images/肉球.svg" %>
+    <% end %>
+    </div>
+    <ul class="side-main">
+        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>TOP</li>
+        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>Day</li>
+        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>Month</li>
+        <li><%= link_to image_tag("/images/肉球.svg"), cat_records_chart_path(@cat,Date.today.year, Date.today.mon), class:"" %>グラフ</li>
+        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>Hospital</li>
+        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>Mycat</li>
+        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>Change</li>
+        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>New</li>
+    </ul>
+</div>

@@ -1,0 +1,54 @@
+<div class="cat-container bg-light">
+    <div class="cat-side p-0">
+        <%= render 'layouts/cat_menus' %>
+    </div>
+    <div class="cat-home chart-container">
+        <div class="month-ber p-3 row">
+            <%= link_to image_tag("/images/左white.svg", class:"arrow"), 
+            cat_records_chart_path(@cat,@display_day.prev_month.year,@display_day.prev_month.month), class:"col-1" %>
+            <h4 class="col-10 text-center mb-0"><%= @display_day.month %> 月</h4> 
+            <%= link_to image_tag("/images/右white.svg", class:"arrow"), 
+            cat_records_chart_path(@cat,@display_day.next_month.year,@display_day.next_month.month), class:"col-1 text-end" %>
+        </div>
+        
+        <div class="record-icons p-3 text-center">
+            <% @type_image.each_with_index do |type, i| %>
+                <%= image_tag("/record_images/#{type}", onclick:"iconEntry(#{i+1});", class:"m-1") %>
+            <% end %>
+            <!--DBに情報を送信しないフォーム form_with url~-->
+            <!--DBに保存しない、且つパラメータとして情報を送れるgetメソッドを指定-->
+            <%= form_with url: cat_records_chart_path(@cat, @display_day, @type), method: 'get' do |f| %>
+                <%= f.hidden_field :select_type, selected: @type, id:"iconType" %>
+            <% end %>
+        </div>
+
+        <div class="chart-comment p-5">
+            <!--どのアイコンのグラフかわかるように画像表示する　※jsで追記していく-->
+
+
+            <p>今月のご飯の平均摂取量は〇ｇだよ</p>
+            
+        </div>
+        <div class="chart p-5">
+        　　
+            <%= line_chart @chart, 
+                                # ymin: 0, ymax: 300,
+                                discrete: true,
+                                width: "100%",height: "500px",
+                                loading: "Loading...", 
+                                empty: "データがありません",
+                                xtitle: "", ytitle: "1日ごとの摂取量（ｇ）",
+                                colors: ["#b00", "#666"]
+                                %>
+        </div>
+        
+        
+        
+    </div>  
+    <script>
+        function iconEntry(num){
+                document.getElementById('iconType').value = num
+                document.getElementById('iconType').form.submit();
+        }
+    </script>
+</div>
