@@ -9,7 +9,7 @@ class FamiliesController < ApplicationController
     if @family.save
       # current_user.update(host_user: true, family_id: @family.id)
       session[:family_id] = @family.id
-      redirect_to new_user_registration_path
+      redirect_to signup_path
     else
       render :new
     end

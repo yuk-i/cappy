@@ -6,7 +6,7 @@
     
     .side-main {
         img {
-            width: 20px;
+            width: 24px;
         }
     }
 
@@ -17,5 +17,17 @@
     li {
        padding-bottom: 20px; 
     }
+}
+
+.side-icon {
+    img {
+    margin-right: 10px;
+    margin-left: 5px;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
+    }
+    
 }
 

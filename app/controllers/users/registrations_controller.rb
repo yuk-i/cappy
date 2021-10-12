@@ -5,16 +5,35 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  # before_action :set_family, only: [:edit,:destroy]
+  # after_action :invite_user_destroy, only: [:create]
   
 
   # GET /resource/sign_up
   # 新規登録画面
   def new
-    logger.debug("----------------- sesion faimlyid = #{session[:family_id]}")
+    logger.debug("----------------- sesion faimly_id = #{session[:family_id]}")
     @family = Family.find(session[:family_id])
     @user_icons = UserIcon.all
     super
+  end
+  
+  # 招待者のユーザー登録
+  def invite_user_new
+    if current_user
+      flash[:alert] = "別のユーザーがログインしています。ログアウトしてからお試しください。"
+      redirect_to root_path
+    else
+      logger.debug("----------------- params[faimly_id] = #{params[:family_id]}")
+      if Invitation.find_by(family_id: params[:family_id])
+        @family = Family.find(params[:family_id])
+        @user_icons = UserIcon.all
+        @user = User.new
+        session[:family_id] = @family.id
+      else
+        redirect_to root_path
+        flash[:alert] = "権限がありません。"
+      end
+    end  
   end
 
   # POST /resource
@@ -31,8 +50,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    logger.debug("==================== user update #{params[:user][:user_icon_id]}")
-    
+    logger.debug("==================== user update nickname #{params[:user][:nickname]}")
+    super
+  #   @user = current_user
+  #   if @user.update
+  #     redirect_to root_path
+  #   else
+  #     render :edit
+  #   end
   end
 
   # DELETE /resource
@@ -66,7 +91,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :email, :user_icon_id])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :user_icon_id, :family_id, :host_user])
   end
 
   # The path used after sign up.
@@ -80,6 +105,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
+    # メール認証時に招待者であれば招待者リストから削除する
+    if @invite = Invitation.find_by(family_id: params[:user][:family_id], email: params[:user][:email])
+      logger.debug("==================== @invite_params[family_id] #{params[:user][:family_id]}")
+      @invite.destroy
+    else
+      logger.debug("==================== invite_user_destroy = error #{params[:user][:family_id]}")
+    end
     verify_path
   end
+  
+  
 end

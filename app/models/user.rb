@@ -8,10 +8,10 @@ class User < ApplicationRecord
   belongs_to :user_icon
   belongs_to :family
   
-  has_many :hospital_posts
-  has_many :target_daily_records
+  # has_many :hospital_posts
+  # has_many :target_daily_records
   
-  validates :nickname, presence: true
+  # validates :nickname, presence: true
   # validates :user_icon_id, presence: true
   
   

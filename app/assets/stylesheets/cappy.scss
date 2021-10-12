@@ -104,8 +104,8 @@
     height: 100%;
     border-radius: 80px;
     img {
-        width: 100%;
-        height: 100%;
+        width: 160px;
+        height: 160px;
         border-radius: 80px;
     }
 }
@@ -184,9 +184,27 @@
 
 // chartページ関連
 
-.chart-container {
+.chart-main-container {
     display: grid;
     grid-template-columns: 30% 70%;
+    border: 1px solid;
+    border-color : grey;
+}
+
+// カレンダーページ
+
+.calendar-record-icons {
+    img {
+        width: 20px;
+    }
+}
+
+.calendar-record-box {
+    // width: 90%;
+    background-color: white;
+    // border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
+    margin: 0 auto;
 }
  
 
@@ -241,18 +259,20 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
 }
 
-.cats-icon {
-    margin-right: 10px;
-    margin-left: 5px;
-    width: 45px;
-    height: 45px;
-    border-radius: 80px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
-}
-
 .cats-icon-list {
     width: 30px;
     height: 30px;
     border-radius: 80px;
 }
 
+.header-menus {
+    .cats-icon {
+    width: 24px;
+    height: 24px;
+    }
+    .dropdown-menu[data-bs-popper] {
+    left: -120px;
+    }
+    
+    
+}

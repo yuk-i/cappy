@@ -83,7 +83,7 @@
                                         <%= image_tag("/record_images/#{@type_image[4]}", onclick:"iconNotEntry5()", class:"") %>
                                     </div>
                                     <div class="col-10 pt-2" >
-                                        <%= dr.number_field :weight, class: "col-2", id:"fiveWeight" %> kg
+                                        <%= dr.number_field :weight, step: "0.1", class: "col-2", id:"fiveWeight" %> kg
                                         <%= dr.text_field :memo, placeholder: "メモ", class: "record-memo", id:"fiveMemo" %>
                                     </div>
                                 <% end %>    

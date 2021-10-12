@@ -1,0 +1,28 @@
+.simple_calemdar {
+    
+}
+
+.simple-calendar .day {
+    height: 100px;
+    
+}
+
+.simple-calendar .today {
+    background: #e6e5de57;
+    
+}
+
+.simple-calendar .prev-month {
+    background: none;
+    a {
+        color: #adb5bdba;
+    }
+}
+
+.table > :not(caption) > * > * {
+    box-shadow: inset 0 0 0 9999px rgba(255,255,255,0.15);
+}
+
+.calendar-heading {
+    display: none;
+}

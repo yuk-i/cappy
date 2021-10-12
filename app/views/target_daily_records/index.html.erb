@@ -1,2 +1,36 @@
-<h1>DailyRecords#index</h1>
-<p>Find me in app/views/daily_records/index.html.erb</p>
+<div class="cat-container">
+    <div class="cat-side p-0">
+        <%= render 'layouts/cat_menus' %>
+    </div>
+    <div class="container-fluid pb-3">
+         <div class="month-ber p-3 row">
+            <%= link_to image_tag("/images/左white.svg", class:"arrow"), 
+            "/cats/#{@cat.id}/records?start_date=#{@start_date.prev_month}", class:"col-1" %>
+            <h4 class="col-10 text-center mb-0"><%= @start_date.month %> 月</h4> 
+            <%= link_to image_tag("/images/右white.svg", class:"arrow"), 
+            "/cats/#{@cat.id}/records?start_date=#{@start_date.next_month}", class:"col-1 text-end" %>
+        </div>
+        
+        <div class="record-icons p-3 text-center">
+            <% @type_image.each_with_index do |type, i| %>
+                <%= image_tag("/record_images/#{type}", onclick:"iconEntry(#{i+1});", class:"m-1") %>
+            <% end %>
+        </div>
+
+        <%#= render 'target_daily_records/daily_header' %>
+        <div class="calendar-record-box p-3 m-2">
+            <span class="calendar-title"><%= @start_date.year %>年<%= @start_date.month %>月</span>
+            <%= month_calendar(attribute: :target_date, events: @my_records) do |date, records| %>
+                <%= link_to "#{date.day}", cat_record_path(@cat,date) %>
+                <% records.each do |record| %>
+                    <div class="calendar-record-icons">
+                        <% record.daily_records.each do |dr| %>
+                            <% @type = @record_types.find(dr.daily_record_type_id) %>
+                            <%= image_tag "/record_images/#{@type.image}" %>
+                        <% end %>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+    </div>    
+</div>

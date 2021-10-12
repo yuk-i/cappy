@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     root :to => "home#top"
     get "signup", :to => "users/registrations#new"
+    get "signup/:family_id" => "users/registrations#invite_user_new", as: :invite_signup
     get "verify", :to => "users/registrations#verify"
     get "login", :to => "users/sessions#new"
     get "logout", :to => "users/sessions#destroy"

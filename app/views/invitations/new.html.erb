@@ -4,7 +4,7 @@
     <div class="sub-container shadow bg-white rounded">
         <%= form_with model: @invitation, local: true do |f| %>
             <div class="form p-5">
-                <%= f.hidden_field :family_id, vlue: @user.family.id %>
+                <%= f.hidden_field :family_id, vlue: @user.family_id %>
                 <div class="form-group row mt-2">
                     <label for="email" class="col-sm-4 col-form-label">招待したいユーザーのメールアドレス</label>
                     <%= f.text_field :email, autocomplete: "email", class: "col-sm-8 form-control #{"is-invalid" if f.object.errors.messages[:email].present? }" %>

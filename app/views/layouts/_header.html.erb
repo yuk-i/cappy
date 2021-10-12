@@ -6,110 +6,77 @@
     <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
     <!--  <span class="navbar-toggler-icon"></span>-->
     <!--</button>-->
-    <% if user_signed_in? %>
-    <% @user = current_user %>
-    <% @family = @user.family %>
-     <!--ログイン後-->
-      <div class="collapse navbar-collapse">
-        <div class="btn-group">
-          <div data-bs-toggle="dropdown" type="button">
-            <%= image_tag "/user_images/#{@user.user_icon.images}", class:"icon" %>
-          </div>
-          <ul class="dropdown-menu">
-            <li>
-              <%= link_to "編集", edit_user_registration_path(@user), class:"dropdown-item small" %>
-            </li>
-            <li>
-              <%= link_to "ログアウト", logout_path, class:"dropdown-item small" %>
-            </li>
-          </ul>
-        </div>
-        <% if @cat = Cat.find_by(family_id: @user.family_id) %>
-          
+    
+    <!--ログイン後-->
+    <% if user_signed_in? %> 
+      <% @user = current_user %>
+      <% @family = @user.family %>
+        <div class="collapse navbar-collapse">
           <div class="btn-group">
             <div data-bs-toggle="dropdown" type="button">
-              <% if @cat.image.attached? %>
-                <%= image_tag @cat.image, class:"cats-icon" %>
-              <% else %>
-                <%= image_tag "/images/仮4.jpg", class:"cats-icon" %>
-              <% end %>
+              <%= image_tag "/user_images/#{@user.user_icon.images}", class:"icon" %>
             </div>
-            <ul class="dropdown-menu cats-list p-2">
-              <% @family.cats.each do |cat| %>
+            <ul class="dropdown-menu">
               <li>
-                <% if cat.image.attached? %>
-                  <%= image_tag cat.image, class:"cats-icon-list m-1" %><%= link_to "#{cat.name}", home_cat_path(cat), onclick:"catChange()" %>
-                <% else %>
-                  <%= image_tag "/images/仮4.jpg", class:"cats-icon-list m-1" %><%= link_to "#{cat.name}", home_cat_path(cat), onclick:"catChange()" %>
-                <% end %>
+                <%= link_to "編集", edit_user_registration_path(@user), class:"dropdown-item small" %>
               </li>
-              <% end %>
               <li>
-                <%= link_to new_cat_path, class: "button dropdown-item small p-1" do %>
-                  猫の登録
-                <% end %>
+                <%= link_to "ログアウト", logout_path, class:"dropdown-item small" %>
               </li>
             </ul>
           </div>
-        <% else %>
-          <div class="btn-group">
-            <div data-bs-toggle="dropdown" type="button">
-              <%= image_tag "/images/仮4.jpg", class:"cats-icon" %>
-            </div>
-            <ul class="dropdown-menu cats-list p-2">
-              <li>
-                <%= link_to new_cat_path, class: "button dropdown-item small p-1" do %>
-                  猫の登録
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        <% end %>
-      </div>
-      <div class="collapse navbar-collapse justify-content-end">
-        <ul class="navbar-nav mr-5 mt-2 header-menus">
-          <% if Cat.find_by(family_id: @user.family_id) %>
-            <li class="nav-item">
-              <%= link_to home_cat_path(@cat), class: "nav-link" do %>
-              <label>HOME</label>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to cat_record_path(@cat,Date.today), class: "nav-link" do %>
-              <label>RECORD</label>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "#", class: "nav-link" do %>
-              <label>HOSPITAL</label>
-              <% end %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to cat_path(@cat), class: "nav-link" do %>
-              <label>myCAT</label>
-              <% end %>
-            </li>
-            
-          <% end %>
-        </ul>
-        <!--↓ドロップボタン-->
-        <div class="btn-group">
-          <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <a class="dropdown-item small" type="button">Family一覧</a>
-            </li>
-            <li>
-              <a class="dropdown-item small" type="button">お問い合わせ</a>
-            </li>
-            
-          </ul>
         </div>
-      </div>
+          <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav mr-5 mt-2 header-menus">
+              <% if Cat.find_by(family_id: @user.family_id) %>
+                <% if @cat = Cat.find_by(family_id: @user.family_id) %>
+                  <li class="nav-item">
+                    <div class="btn-group">
+                        <div data-bs-toggle="dropdown" type="button">
+                          <%= image_tag "/cat_menus/cat6.svg", class:"cats-icon mb-1" %>
+                        </div>
+                        <ul class="dropdown-menu cats-list p-2">
+                          <% @family.cats.each do |cat| %>
+                          <li>
+                            <% if cat.image.attached? %>
+                              <%= image_tag cat.image, class:"cats-icon-list m-1" %><%= link_to "#{cat.name}", home_cat_path(cat) %>
+                            <% else %>
+                              <%= image_tag "/cat_menus/cat1.svg", class:"cats-icon-list m-1" %><%= link_to "#{cat.name}", home_cat_path(cat) %>
+                            <% end %>
+                          </li>
+                          <% end %>
+                          <li>
+                            <%= link_to new_cat_path, class: "button dropdown-item small p-1" do %>
+                              猫の登録
+                            <% end %>
+                          </li>
+                        </ul>
+                    </div>
+                  </li>
+                <% end %> 
+              <% end %>
+            </ul>  
+          <!--↓ドロップボタン-->
+            <div class="btn-group">
+              <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item small" type="button">Family一覧</a>
+                </li>
+                <li>
+                  <p class="dropdown-item small" type="button"><%= link_to "招待する", new_invitation_path, class:"d-inline" %></p>
+                </li>
+                <li>
+                  <a class="dropdown-item small" type="button">お問い合わせ</a>
+                </li>
+                
+              </ul>
+            </div>
+        </div>
+        
+    <!--ログイン前-->    
     <% else %>
-      <!--ログイン前-->
       <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav mr-5 mt-2">
           <li class="nav-item">
@@ -122,12 +89,12 @@
     <% end %>
   </nav>
   
-  <script>
-    function catChange(){
-      let cat = document.getElementById('cat')
-      cat.innerHTML = ""
+  <!--<script>-->
+  <!--  function catChange(){-->
+  <!--    let cat = document.getElementById('cat')-->
+  <!--    cat.innerHTML = ""-->
       
-    }
-  </script>
+  <!--  }-->
+  <!--</script>-->
 
 </header>

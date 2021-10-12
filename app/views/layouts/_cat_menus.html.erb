@@ -3,17 +3,16 @@
     <% if @cat.image.attached? %>
         <%= image_tag @cat.image, class:"cats-icon" %>
     <% else %>
-        <%= image_tag "/images/肉球.svg" %>
+        <%= image_tag "/cat_menus/cat1.svg" %>
     <% end %>
     </div>
-    <ul class="side-main">
-        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>TOP</li>
-        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>Day</li>
-        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>Month</li>
-        <li><%= link_to image_tag("/images/肉球.svg"), cat_records_chart_path(@cat,Date.today.year, Date.today.mon), class:"" %>グラフ</li>
-        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>Hospital</li>
-        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>Mycat</li>
-        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>Change</li>
-        <li><%= link_to image_tag("/images/肉球.svg"), "#", class:"" %>New</li>
+    <ul class="side-main pt-2">
+        <li><%= link_to image_tag("/cat_menus/home.svg"), home_cat_path(@cat), class:"" %></li>
+        <li><%= link_to image_tag("/cat_menus/cat4.svg"), cat_path(@cat), class:"" %></li>
+        <li><%= link_to image_tag("/cat_menus/calendar.svg"), cat_records_path(@cat), class:"" %></li>
+        <li><%= link_to image_tag("/cat_menus/pen.svg"), cat_record_path(@cat,Date.today), class:"" %></li>
+        <li><%= link_to image_tag("/cat_menus/chart.svg"), cat_records_chart_path(@cat,Date.today.year, Date.today.mon), class:"" %></li>
+        <li><%= link_to image_tag("/cat_menus/hospital.svg"), "#", class:"" %></li>
+        <li><%= link_to image_tag("/images/肉球.svg"), new_cat_path, class:"" %></li>
     </ul>
 </div>

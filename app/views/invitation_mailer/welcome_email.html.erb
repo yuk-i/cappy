@@ -1,8 +1,8 @@
 <p>こんにちは！</p>
 <br>
-<p><%= @family.name %>の<%= @host_user %>さんがあなたをCAPPYに招待しています。</p>
+<p><%= @family.name %>の<%= @host_user.nickname %>さんがあなたをCAPPYに招待しています。</p>
 <p>下記URLよりユーザー登録を行ってください。</p>
-<p><%= @url %></p>
+<p><%= link_to "登録をする", invite_signup_url(@family.id) %></p>
 <br>
 <p>お心当たりがない場合は、本メッセージを破棄してください。</p>
 <br>
