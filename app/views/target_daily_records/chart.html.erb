@@ -22,13 +22,16 @@
             <% end %>
         </div>
         
-        <div class="chart-main-container">
+        <div class="chart-main-container p-2 mb-3">
 
-            <div class="chart-comment p-5">
+            <div class="chart-side p-3">
                 <!--どのアイコンのグラフかわかるように画像表示する　※jsで追記していく-->
+                <p class="chart-title">
+                    <%= image_tag "/record_images/#{@icon.image}" %>
+                    <!--ごはんの量-->
+                </p>
     
-    
-                <p>今月のご飯の平均摂取量は〇ｇだよ</p>
+                <!--<p class="chart-comment">今月のご飯の平均摂取量は〇ｇだよ</p>-->
                 
             </div>
             <div class="chart p-5">
@@ -52,5 +55,6 @@
                 document.getElementById('iconType').value = num
                 document.getElementById('iconType').form.submit();
         }
+        
     </script>
 </div>

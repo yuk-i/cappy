@@ -40,6 +40,28 @@ main {
     border-radius: 0;
 }
 
+.home-message {
+    letter-spacing: 5px;
+    overflow:hidden;
+    img {
+        width: 34px;
+        margin-left: 2rem;
+    }
+    .message-hed {
+        animation: poyopoyo 2s ease-out infinite;
+    }
+    
+    @keyframes poyopoyo {
+      0%, 40%, 60%, 80% {
+        transform: scale(1.0);
+      }
+      50%, 70% {
+        transform: scale(0.80);
+      }
+    } 
+
+}
+
 
 // Bootstrapに関するCSS------------------------
 .header-container {

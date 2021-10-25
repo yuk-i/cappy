@@ -37,12 +37,17 @@
 
 .cat-container {
     height: 100%;
-    display: grid;
-    grid-template-columns: 80px auto;
+    // display: grid;
+    // grid-template-columns: 80px auto;
 }
 
 .cat-home {
     background-color: white;
+    
+    .home-main-image {
+        background-color: grey;
+        width: 100px;
+    }
 }
 
 .sub-menus p {
@@ -184,12 +189,35 @@
 
 // chartページ関連
 
+.chart-container {
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    background-color : #DDDDDD;
+}
+
+
 .chart-main-container {
     display: grid;
     grid-template-columns: 30% 70%;
-    border: 1px solid;
-    border-color : grey;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
+    margin: 0 auto;
+    width: 90%;
 }
+
+.chart-side {
+    
+}
+
+
+
+.chart-title {
+    img {
+    width: 60px;
+    }
+}
+
+
 
 // カレンダーページ
 
@@ -200,11 +228,18 @@
 }
 
 .calendar-record-box {
-    // width: 90%;
+    width: 90%;
     background-color: white;
     // border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
     margin: 0 auto;
+}
+
+
+// invitations_newページ
+
+.invitation-form {
+     width: 100%;   
 }
  
 
@@ -251,7 +286,7 @@
 // headerに関するCSS--------------------
 
 .icon {
-    margin-right: 10px;
+    margin-right: 14px;
     margin-left: 5px;
     width: 45px;
     height: 45px;
@@ -259,20 +294,79 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.21);
 }
 
-.cats-icon-list {
-    width: 30px;
-    height: 30px;
-    border-radius: 80px;
-}
+// .cats-icon-list {
+//     width: 30px;
+//     height: 30px;
+//     border-radius: 80px;
+// }
 
 .header-menus {
-    .cats-icon {
-    width: 24px;
-    height: 24px;
+    // .cats-icon {
+    // width: 24px;
+    // height: 24px;
+    // }
+    .dropdown-menu {
+    left: -1rem;
     }
-    .dropdown-menu[data-bs-popper] {
-    left: -120px;
+}
+
+.home-icon {
+        width: 60px;
+    }
+
+.dropdown-menu {
+    min-width: 8rem;
+}
+
+.header-container {
+    .user-icon {
+        .dropdown-menu {
+            margin-top : 1rem;
+            left : 8px;
+        }
+        
+    }
+}
+
+.user-guide {
+    font-size : 2px;
+}
+
+.user-name {
+    font-size : 16px;
+}
+
+// user showページ
+.show-sub-container {
+    width: 500px;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color : #80CAC5;
+    color : white;
+    
+    img {
+        width: 90px;
     }
     
+    .guide {
+        font-size: 12px;
+    }
     
+    .name {
+        .main {
+        font-size: 28px;
+        }
+    }
+    
+    .profile {
+        padding-left : 20px;
+    }
+    
+    a {
+       color : white;
+       font-size: 1rem;
+       font-weight: 100;
+    }
+
 }

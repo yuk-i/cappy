@@ -11,20 +11,25 @@
     <% if user_signed_in? %> 
       <% @user = current_user %>
       <% @family = @user.family %>
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse user-icon">
           <div class="btn-group">
             <div data-bs-toggle="dropdown" type="button">
               <%= image_tag "/user_images/#{@user.user_icon.images}", class:"icon" %>
             </div>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-end">
               <li>
-                <%= link_to "編集", edit_user_registration_path(@user), class:"dropdown-item small" %>
+                <%= link_to "ユーザー情報", show_path(@user), class:"dropdown-item small", type:"button" %>
               </li>
               <li>
-                <%= link_to "ログアウト", logout_path, class:"dropdown-item small" %>
+                <%= link_to "ログアウト", logout_path, class:"dropdown-item small", type:"button" %>
               </li>
             </ul>
           </div>
+          <p class="user-guide mb-1">
+            ログインユーザー
+            <br>
+            <span class="user-name"><%= @user.nickname %></span>
+          </p>
         </div>
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav mr-5 mt-2 header-menus">
@@ -33,44 +38,37 @@
                   <li class="nav-item">
                     <div class="btn-group">
                         <div data-bs-toggle="dropdown" type="button">
-                          <%= image_tag "/cat_menus/cat6.svg", class:"cats-icon mb-1" %>
+                          <%= image_tag "/images/y0507.png", class:"home-icon mb-1" %>
                         </div>
-                        <ul class="dropdown-menu cats-list p-2">
+                        <ul class="dropdown-menu dropdown-menu-end">
                           <% @family.cats.each do |cat| %>
                           <li>
-                            <% if cat.image.attached? %>
-                              <%= image_tag cat.image, class:"cats-icon-list m-1" %><%= link_to "#{cat.name}", home_cat_path(cat) %>
-                            <% else %>
-                              <%= image_tag "/cat_menus/cat1.svg", class:"cats-icon-list m-1" %><%= link_to "#{cat.name}", home_cat_path(cat) %>
-                            <% end %>
+                            <%= link_to "#{cat.name}", home_cat_path(cat), class:"dropdown-item small", type:"button" %>
                           </li>
                           <% end %>
-                          <li>
-                            <%= link_to new_cat_path, class: "button dropdown-item small p-1" do %>
-                              猫の登録
-                            <% end %>
-                          </li>
                         </ul>
                     </div>
                   </li>
                 <% end %> 
               <% end %>
             </ul>  
-          <!--↓ドロップボタン-->
             <div class="btn-group">
-              <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              </button>
+              <div data-bs-toggle="dropdown" type="button">
+                <%= image_tag "/images/b0487.png", class:"home-icon mb-1" %>
+              </div>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li>
-                  <a class="dropdown-item small" type="button">Family一覧</a>
+                  <%= link_to "猫の登録", new_cat_path, class:"dropdown-item small", type:"button" %>
                 </li>
                 <li>
-                  <p class="dropdown-item small" type="button"><%= link_to "招待する", new_invitation_path, class:"d-inline" %></p>
+                  <%= link_to "招待する", new_invitation_path, class:"dropdown-item small", type:"button" %>
                 </li>
                 <li>
-                  <a class="dropdown-item small" type="button">お問い合わせ</a>
+                  <%= link_to "メンバー", "#", class:"dropdown-item small", type:"button" %>
                 </li>
-                
+                <li>
+                  <%= link_to "お問い合わせ", "#", class:"dropdown-item small", type:"button" %>
+                </li>
               </ul>
             </div>
         </div>

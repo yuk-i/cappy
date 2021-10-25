@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="show-sub-container shadow row">
+      <%= link_to "編集", edit_user_registration_path, class:"col-1 p-0 text-end" %>
+      <%= link_to "ログアウト", logout_path, class:"col-11 text-end" %>
+      <div class="user-icon mt-4 col-3">
+          <%= image_tag "/user_images/#{@user.user_icon.images}" %>
+      </div>
+      <div class="profile mt-4 col-9">
+          <div class="name">
+              <p class="guide mt-1 mb-0">ユーザーネーム</p>
+              <p class="main mb-2"><%= @user.nickname %></p>
+          </div>
+          <div class="mail pt-3">
+              <p class="main"><%= @user.email %></p>
+          </div>
+          <div class="family">
+              <p class="guide mt-2 mb-0">所属</p>
+              <p class="main"><%= @user.family.name %></p>
+          </div>
+          <div class="start">
+              <p class="guide mt-2 mb-0">登録日</p>
+              <p class="main"><%= @user.created_at.strftime('%Y/%m/%d') %></p>
+          </div>
+      </div>
+
+  </div>
+</div>

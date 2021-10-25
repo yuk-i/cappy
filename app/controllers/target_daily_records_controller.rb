@@ -45,6 +45,7 @@ class TargetDailyRecordsController < ApplicationController
         # chart_setメソッドを呼び出す
         chart_set(@cat,@display_day, @type)
         
+    @icon = DailyRecordType.find(@type)    
   end
   
   def new

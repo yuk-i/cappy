@@ -91,7 +91,7 @@ class CatsController < ApplicationController
     def cat_params 
       params.require(:cat).permit(:name, :birthday, :gender, :weight, :food_amount, 
                                   :pee_count, :poop_count, :favorite_snack, :favorite_toy, :characteristic, 
-                                  :family_id, :cat_category_id, :cat_sand_category_id, :hospital, :memo, :image,
+                                  :family_id, :cat_category_id, :cat_sand_category_id, :hospital, :memo, :image, :main_image,
                                   cat_personalities_attributes: [:cat_personality_category_id])
     end
     

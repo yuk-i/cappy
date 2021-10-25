@@ -18,7 +18,7 @@
         </div>
 
         <%#= render 'target_daily_records/daily_header' %>
-        <div class="calendar-record-box p-3 m-2">
+        <div class="calendar-record-box p-3">
             <span class="calendar-title"><%= @start_date.year %>年<%= @start_date.month %>月</span>
             <%= month_calendar(attribute: :target_date, events: @my_records) do |date, records| %>
                 <%= link_to "#{date.day}", cat_record_path(@cat,date) %>

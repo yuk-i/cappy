@@ -7,6 +7,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
   # after_action :invite_user_destroy, only: [:create]
   
+  
+  def show
+    @user = current_user
+  end
 
   # GET /resource/sign_up
   # 新規登録画面
@@ -79,10 +83,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
-  
-  # def set_family
-  #   @family = current_user.family
-  # end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
@@ -92,6 +92,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :user_icon_id, :family_id, :host_user])
+  end
+  
+  # パスワード認証なしで更新できる
+  def update_resource(resource, params)
+    resource.update_without_password(params)
   end
 
   # The path used after sign up.

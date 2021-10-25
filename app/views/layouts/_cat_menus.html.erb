@@ -1,18 +1,21 @@
-<div class="side-nav">
-    <div class="side-icon pt-3 mb-3">
-    <% if @cat.image.attached? %>
-        <%= image_tag @cat.image, class:"cats-icon" %>
-    <% else %>
-        <%= image_tag "/cat_menus/cat1.svg" %>
-    <% end %>
-    </div>
-    <ul class="side-main pt-2">
-        <li><%= link_to image_tag("/cat_menus/home.svg"), home_cat_path(@cat), class:"" %></li>
-        <li><%= link_to image_tag("/cat_menus/cat4.svg"), cat_path(@cat), class:"" %></li>
-        <li><%= link_to image_tag("/cat_menus/calendar.svg"), cat_records_path(@cat), class:"" %></li>
-        <li><%= link_to image_tag("/cat_menus/pen.svg"), cat_record_path(@cat,Date.today), class:"" %></li>
-        <li><%= link_to image_tag("/cat_menus/chart.svg"), cat_records_chart_path(@cat,Date.today.year, Date.today.mon), class:"" %></li>
-        <li><%= link_to image_tag("/cat_menus/hospital.svg"), "#", class:"" %></li>
-        <li><%= link_to image_tag("/images/肉球.svg"), new_cat_path, class:"" %></li>
-    </ul>
+<div class="side-nav content">
+    <div class="row">
+        <div class="side-icon col-3 mt-2">
+            <% if @cat.image.attached? %>
+                <%= link_to image_tag(@cat.image), home_cat_path(@cat), class:"cats-icon" %>
+            <% else %>
+                <%= image_tag "/cat_menus/g0506.png" %>
+            <% end %>
+            <span><%= @cat.name %> のマイページ</span>
+        </div>
+        <div class="side-main col-9">
+            <ul>
+                <li><%= link_to image_tag("/cat_menus/y0456.png"), cat_record_path(@cat,Date.today), class:"" %>record</li>
+                <li><%= link_to image_tag("/cat_menus/n0805.png"), cat_records_path(@cat), class:"" %>calendar</li>
+                <li><%= link_to image_tag("/cat_menus/g0846.png"), cat_records_chart_path(@cat,Date.today.year, Date.today.mon), class:"" %>chart</li>
+                <li><%= link_to image_tag("/cat_menus/r0186.png"), "#", class:"" %>hospital</li>
+                <li class="m-0"><%= link_to image_tag("/cat_menus/n0509 (1).png"), cat_path(@cat), class:"" %>mycat</li>
+            </ul>
+        </div>
+    </div>    
 </div>

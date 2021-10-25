@@ -11,6 +11,7 @@ class Cat < ApplicationRecord
     
     # 1枚だけ写真を紐づける
     has_one_attached :image
+    has_one_attached :main_image
     
     
     with_options presence: true do
